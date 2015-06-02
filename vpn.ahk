@@ -1,6 +1,6 @@
-WinWait, , ç”¨æˆ·å‡çº§çš„é€šçŸ¥åŒºåŸŸ
-IfWinNotActive, , ç”¨æˆ·å‡çº§çš„é€šçŸ¥åŒºåŸŸ, WinActivate, , ç”¨æˆ·å‡çº§çš„é€šçŸ¥åŒºåŸŸ
-WinWaitActive, , ç”¨æˆ·å‡çº§çš„é€šçŸ¥åŒºåŸŸ
+WinWait, , ÓÃ»§Éý¼¶µÄÍ¨ÖªÇøÓò
+IfWinNotActive, , ÓÃ»§Éý¼¶µÄÍ¨ÖªÇøÓò, WinActivate, , ÓÃ»§Éý¼¶µÄÍ¨ÖªÇøÓò
+WinWaitActive, , ÓÃ»§Éý¼¶µÄÍ¨ÖªÇøÓò
 MouseClick, left,  1175,  22
 Sleep, 100
 WinWait, View Available Networks, 
@@ -10,8 +10,7 @@ MouseClick, left,  116,  162
 Sleep, 100
 MouseClick, left,  200,  198
 Sleep, 100
-WinWait, è¿žæŽ¥ VPN2, ä¸ºä¸‹é¢ç”¨æˆ·ä¿å­˜ç”¨æˆ·å
-IfWinNotActive, è¿žæŽ¥ VPN2, ä¸ºä¸‹é¢ç”¨æˆ·ä¿å­˜ç”¨æˆ·å, WinActivate, è¿žæŽ¥ VPN2, ä¸ºä¸‹é¢ç”¨æˆ·ä¿å­˜ç”¨æˆ·å
-WinWaitActive, è¿žæŽ¥ VPN2, ä¸ºä¸‹é¢ç”¨æˆ·ä¿å­˜ç”¨æˆ·å
+WinWait, Á¬½Ó VPN2, ÎªÏÂÃæÓÃ»§±£´æÓÃ»§Ãû
+IfWinNotActive, Á¬½Ó VPN2, ÎªÏÂÃæÓÃ»§±£´æÓÃ»§Ãû, WinActivate, Á¬½Ó VPN2, ÎªÏÂÃæÓÃ»§±£´æÓÃ»§Ãû
+WinWaitActive, Á¬½Ó VPN2, ÎªÏÂÃæÓÃ»§±£´æÓÃ»§Ãû
 MouseClick, left,  71,  359
-Sleep, 100
