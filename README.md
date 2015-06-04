@@ -2,7 +2,7 @@
 autohotkey 脚本
 ##利用快捷键快速创建和发布Hexo文章
 
-在windows上用Hexo写一篇博客的过程就变成了以下几个步骤:
+在windows上用Hexo写一篇博客的过程为以下几个步骤:
 ```
 　　1. 进入Hexo所在目录
 　　2. 打开gitbash
