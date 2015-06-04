@@ -26,8 +26,14 @@ Run, D:\soft\markdownpad\MarkdownPad2.exe
 Return
 
 ; ------------------------------------------------
+; 打开haroopad
+#h::
+Run, C:\Program Files\Haroo Studio\Haroopad\haroopad.exe
+Return
+
+; ------------------------------------------------
 ; 打开notepad++
-#e::
+#t::
 Run, D:\soft\notepad++\notepad++.exe
 Return
 
@@ -44,54 +50,86 @@ Run, D:\soft\UCBrowser\Application\UCBrowser.exe
 Return
 
 ; ------------------------------------------------
+; 打开evernote
+#y::
+Run, D:\soft\evernote\Evernote.exe
+Return
+
+; ------------------------------------------------
 ; 函数，利用Hexo创建新文章
 SendHexo() {
-    WinActive( gitbash )
+	WinActive( gitbash )
 	global postname
-    Send, cd /E/hexo_github/{enter}hexo new '%postname%' {enter}
-	sleep 10000
+    Send, hexo new '%postname%' >C:/temp.txt{enter}
     return 1
 }
 
 ; ------------------------------------------------
-; 函数，在hexo所在目录创建新文章
-SendHexoWithNoCd(){
-    global postname
-	InputBox, postname, Hexo new post:, please input the post name:.
-    Send, hexo new '%postname%' {enter}
-	sleep 10000
-	Runwait, D:\soft\markdownpad\MarkdownPad2.exe "E:\hexo_github\source\_posts\%postname%.md"
-    WinActive( %postname% - MarkdownPad 2 )
+; 函数，用Markdown编辑器打开新创建的文章
+openMarkdownEditor(){
+     Loop
+		{
+		   global filename
+		   if FileExist(filename)
+		   {
+		      FileGetSize, OutputVar, C:/temp.txt
+			  if(OutputVar>0)
+			  {//这里用文件操作是为了判断send给gitbash的hexo new指令已经完成创建，
+			   //不知道autohotkey有没有更好的方式实现send指令返回完成的方式？
+			    FileDelete, %filename%
+		        break
+			  }
+		      
+		   }  
+		}
+		   global postname
+		   Run, D:\soft\markdownpad\MarkdownPad2.exe "E:\hexo_github\source\_posts\%postname%.md"
+		   WinActive( %postname% - MarkdownPad 2 )  
 }
-CdHexo()
-{
+
+; ------------------------------------------------
+; 函数，运行gitbash
+RunGitBash() {
+   Run D:\soft\git\Git\bin\sh.exe --login -i
 }
+
+; ------------------------------------------------
+; 函数，进入Hexo所在目录
+cdHexo() {
+   if WinExist( "MINGW32:/E/hexo_github" )
+  {  
+	WinActivate
+  } 
+  else
+ {
+    RunGitBash()
+	sleep 3000
+	WinActive( gitbash )
+	Send, cd /E/hexo_github/{enter}
+  }
+}
+
 
 ; ------------------------------------------------
 ; 利用Hexo创建新的文章
 #n::
+global filename
+filename := "C:/temp.txt"
+global postname
+InputBox, postname, Hexo new post:, please input the post name:.
+
+global filename
+filename := "C:/temp.txt"
 if WinExist( "MINGW32:/E/hexo_github" )
-{
+{   
 	WinActivate
-	SendHexoWithNoCd()
+	SendHexo()
+	openMarkdownEditor()
 }
 else {
-    global postname
-	InputBox, postname, Hexo new post:, please input the post name:.
-
-	if ErrorLevel
-		return
-	else {
-        Run D:\soft\git\Git\bin\sh.exe --login -i
-		sleep 3000
-        hexoinput := SendHexo()
-		if hexoinput=1
-		{
-		   Runwait, D:\soft\markdownpad\MarkdownPad2.exe "E:\hexo_github\source\_posts\%postname%.md"
-		   WinActive( %postname% - MarkdownPad 2 )
-		}
-	}
-
+    cdHexo()
+    SendHexo()
+	openMarkdownEditor()
 }   
 Return
 
