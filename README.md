@@ -1,6 +1,14 @@
+# Alfred 
+## hexo脚本
+实现在Mac上快速创建新文章和发布文章，
+### 创建文章并发布
+可直接在印象笔记中写好markdown文章后复制到剪贴板，然后通过唤醒Alfred，然后命令 hexon filename一键发布印象笔记中的文章
+### 修改后重新发布
+文章完成修改后，可通过唤醒Alfred，然后命令 hexor 一键重新发布文章
+
 # autohotkey
 autohotkey 脚本
-##利用快捷键快速创建和发布Hexo文章
+## 利用快捷键快速创建和发布Hexo文章
 
 在windows上用Hexo写一篇博客的过程为以下几个步骤:
 ```
